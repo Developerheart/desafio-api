@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "GASTO", schema = "public")
@@ -29,8 +28,8 @@ public class GastoEntity {
     @Enumerated(EnumType.STRING)
     private Tag tag;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "PESSOA_ID", name = "PESSOA_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PESSOA_ID", referencedColumnName = "PESSOA_ID")
     public PessoaEntity pessoaEntity;
 
     public GastoEntity() {
@@ -81,13 +80,13 @@ public class GastoEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GastoEntity that = (GastoEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(valor, that.valor) && Objects.equals(dataHora, that.dataHora) && tag == that.tag;
+        GastoEntity gasto = (GastoEntity) o;
+        return Objects.equals(id, gasto.id) && Objects.equals(valor, gasto.valor) && Objects.equals(dataHora, gasto.dataHora) && tag == gasto.tag && Objects.equals(pessoaEntity, gasto.pessoaEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, valor, dataHora, tag);
+        return Objects.hash(id, valor, dataHora, tag, pessoaEntity);
     }
 
     @Override
@@ -97,6 +96,7 @@ public class GastoEntity {
                 ", valor=" + valor +
                 ", dataHora=" + dataHora +
                 ", tag=" + tag +
+                ", pessoaEntity=" + pessoaEntity.getNome() +
                 '}';
     }
 }

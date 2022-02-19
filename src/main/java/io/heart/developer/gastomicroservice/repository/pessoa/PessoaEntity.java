@@ -10,8 +10,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "PESSOA", schema = "public")
 public class PessoaEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PESSOA_ID")
     private Integer id;
 
@@ -21,7 +22,7 @@ public class PessoaEntity {
     @Column(name = "PESSOA_SALDO")
     private BigDecimal saldo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pessoaEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<GastoEntity> gastos;
 
     public PessoaEntity() {
@@ -51,17 +52,25 @@ public class PessoaEntity {
         this.saldo = saldo;
     }
 
+    public List<GastoEntity> getGastos() {
+        return gastos;
+    }
+
+    public void setGastos(List<GastoEntity> gastos) {
+        this.gastos = gastos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PessoaEntity that = (PessoaEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(saldo, that.saldo);
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(saldo, that.saldo) && Objects.equals(gastos, that.gastos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, saldo);
+        return Objects.hash(id, nome, saldo, gastos);
     }
 
     @Override
