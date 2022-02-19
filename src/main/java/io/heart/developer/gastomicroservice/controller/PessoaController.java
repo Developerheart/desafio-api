@@ -14,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 @Controller
@@ -37,7 +35,7 @@ public class PessoaController implements Serializable {
     public ResponseEntity<PessoaResponse> buscarPorID(@PathVariable Integer id) throws ResourceNotFoundException {
         PessoaEntity pessoaEntity = pessoaService.buscarPorId(id);
         if (pessoaEntity == null)
-            throw new ResourceNotFoundException();
+            throw new ResourceNotFoundException("PESSOA NÃO ENCONTRADA");
         PessoaResponse response = new PessoaResponse();
         response.setNome(pessoaEntity.getNome());
         List<GastoResponse> gastoResponseList = new ArrayList<>();

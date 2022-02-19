@@ -2,6 +2,7 @@ package io.heart.developer.gastomicroservice.repository.gasto;
 
 import io.heart.developer.gastomicroservice.constantes.Tag;
 import io.heart.developer.gastomicroservice.repository.pessoa.PessoaEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class GastoEntity {
     private BigDecimal valor;
 
 
+    @DateTimeFormat(pattern = "dd/MM/YYYY hh:mm:ss")
     @Column(name = "GASTO_DATA_HORA")
     private LocalDateTime dataHora;
 
