@@ -1,7 +1,7 @@
 package io.heart.developer.gastomicroservice.controller;
 
-import io.heart.developer.gastomicroservice.dto.GastoResponse;
-import io.heart.developer.gastomicroservice.dto.PessoaResponse;
+import io.heart.developer.gastomicroservice.dto.response.GastoResponse;
+import io.heart.developer.gastomicroservice.dto.response.PessoaResponse;
 import io.heart.developer.gastomicroservice.repository.gasto.GastoEntity;
 import io.heart.developer.gastomicroservice.repository.pessoa.PessoaEntity;
 import io.heart.developer.gastomicroservice.service.PessoaService;

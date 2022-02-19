@@ -1,4 +1,6 @@
-package io.heart.developer.gastomicroservice.dto;
+package io.heart.developer.gastomicroservice.dto.response;
+
+import io.heart.developer.gastomicroservice.dto.response.GastoResponse;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package io.heart.developer.gastomicroservice.dto;
+package io.heart.developer.gastomicroservice.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

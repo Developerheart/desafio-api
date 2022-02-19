@@ -47,7 +47,6 @@ public class GastoController implements Serializable {
     @GetMapping("/{id}")
     public ResponseEntity<List<GastoEntity>> buscarPorId(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(gastoService.buscarPorID(id));
-
     }
 
 
