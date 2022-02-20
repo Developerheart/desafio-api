@@ -21,7 +21,7 @@ public class PessoaService implements Serializable {
 
     public PessoaEntity buscarPorId(Integer id){
         Optional<PessoaEntity> pessoa = pessoaRepository.findById(id);
-        return pessoa.orElse(null);
+        return pessoa.orElseThrow();
     }
 
 }

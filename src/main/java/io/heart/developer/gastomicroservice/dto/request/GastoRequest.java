@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class GastoRequest implements Serializable {
@@ -25,12 +26,16 @@ public class GastoRequest implements Serializable {
     private Tag tag;
 
     @JsonProperty(required = true)
-    @DateTimeFormat(pattern = "dd/MM/YYYY hh:mm:ss")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss", style = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHora;
 
     public GastoRequest() {
     }
 
+    public static void main(String[] args) {
+//        LocalDateTime localDateTime =  LocalDateTime.parse("10-03-2022 18:30:19");
+        System.out.println(LocalDateTime.now());
+    }
     public Integer getId() {
         return id;
     }
@@ -67,8 +72,8 @@ public class GastoRequest implements Serializable {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public void setDataHora(String dataHora) {
+        this.dataHora = LocalDateTime.parse(dataHora, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     @Override

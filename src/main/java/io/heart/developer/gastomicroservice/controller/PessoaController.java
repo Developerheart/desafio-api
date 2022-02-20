@@ -34,8 +34,6 @@ public class PessoaController implements Serializable {
     @GetMapping("/{id}")
     public ResponseEntity<PessoaResponse> buscarPorID(@PathVariable Integer id) throws ResourceNotFoundException {
         PessoaEntity pessoaEntity = pessoaService.buscarPorId(id);
-        if (pessoaEntity == null)
-            throw new ResourceNotFoundException("PESSOA NÃO ENCONTRADA");
         PessoaResponse response = new PessoaResponse();
         response.setNome(pessoaEntity.getNome());
         List<GastoResponse> gastoResponseList = new ArrayList<>();
